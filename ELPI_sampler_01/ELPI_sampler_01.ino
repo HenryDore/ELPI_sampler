@@ -4,7 +4,7 @@ int relay_3 = 8;
 int relay_0 = 12;
 int bit_0 = 2;
 int bit_1 = 3;
-int sample_tube = 0;
+int sample_tube = 1;
 int time_flush = 10000;
 int time_sample = 30000;
 
@@ -29,37 +29,47 @@ void setup() {
 
 void loop() {
   switch (sample_tube){
-  case 0:
-    digitalWrite(relay_1, LOW);
-    digitalWrite(relay_2, LOW);
-    digitalWrite(relay_3, LOW);
-    digitalWrite(relay_0, HIGH);
-  break;
   case 1 : 
     digitalWrite(relay_1, HIGH);
     digitalWrite(relay_2, LOW);
     digitalWrite(relay_3, LOW);
-    digitalWrite(relay_0, LOW);
+    digitalWrite(relay_0, HIGH);
+    digitalWrite(bit_0, HIGH);
+    digitalWrite(bit_1, LOW);
   break;
   case 2 : 
-    digitalWrite(relay_1, LOW);
     digitalWrite(relay_2, HIGH);
+    digitalWrite(relay_1, LOW);
     digitalWrite(relay_3, LOW);
-    digitalWrite(relay_0, LOW);
+    digitalWrite(relay_0, HIGH);
+    digitalWrite(bit_0, LOW);
+    digitalWrite(bit_1, HIGH);
   break;
   case 3 : 
+    digitalWrite(relay_3, HIGH);
     digitalWrite(relay_1, LOW);
     digitalWrite(relay_2, LOW);
-    digitalWrite(relay_3, HIGH);
-    digitalWrite(relay_0, LOW);
+    digitalWrite(relay_0, HIGH);
+    digitalWrite(bit_0, HIGH);
+    digitalWrite(bit_1, HIGH);
   break;
   default :
   break;
 }
+  delay(time_sample);
 
-  delay(1000);
+//flush mode 0
+    digitalWrite(bit_0, LOW);
+    digitalWrite(bit_1, LOW);
+    digitalWrite(relay_1, LOW);
+    digitalWrite(relay_2, LOW);
+    digitalWrite(relay_3, LOW);
+    digitalWrite(relay_0, LOW);
+    delay(time_flush);
+    digitalWrite(relay_0, HIGH);
+//
   sample_tube = sample_tube + 1;
   if (sample_tube == 4){
-  sample_tube = 0;
+  sample_tube = 1;
   }
 }

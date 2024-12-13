@@ -3,8 +3,6 @@
 
 function [ELPI_data, ELPI_params, ELPI_properties] = ELPI_sampler_import(filename)
 
-%filename = 'jordan_test.dat';
-
 [file,path] = uigetfile('*.dat');
 if isequal(file,0)
    disp('User selected Cancel');
@@ -143,12 +141,6 @@ for i= 1:14
     end
 end
 
-idx0 = x(:,20) < 2;
-idx0.Properties.VariableNames(1) = "TF";
-idx1 = x(:,21) < 2;
-idx1.Properties.VariableNames(1) = "TF";
-idx_fin = idx1(:,1) & idx0(:,1);
-x_fin = x()
 %%now do the calculations from conversion vectors
 
 %trime stage 15 values to make life easier in matlab

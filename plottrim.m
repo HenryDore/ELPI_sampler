@@ -14,7 +14,7 @@ idx_m3 = ~idx0(:,1) & ~idx1(:,1);
 
 
 idx_m1_del = idx_m1;
-n_del = 7;
+n_del = 3;
 for i = 2:1:size(idx_m1,1)
 if idx_m1{i,1} ~= idx_m1{i-1,1}
     if idx_m1{i,1} == true
@@ -91,6 +91,15 @@ m0 = x(idx_m0_del.TF,:);
 
 figure;
 hold on
+plot(m1.time,m1.PM1);
+plot(m2.time,m2.PM1);
+plot(m3.time,m3.PM1);
+title('PM1')
+legend('internal','filter outlet','external');
+
+
+figure;
+hold on
 plot(m1.time,m1.("PM2.5"));
 plot(m2.time,m2.("PM2.5"));
 plot(m3.time,m3.("PM2.5"));
@@ -99,26 +108,26 @@ legend('internal','filter outlet','external');
 
 figure;
 hold on
-plot(m1.time,m1.PM1);
-plot(m2.time,m2.PM1);
-plot(m3.time,m3.PM1);
-title('PM1')
+plot(m1.time,m1.("PM10"));
+plot(m2.time,m2.("PM10"));
+plot(m3.time,m3.("PM10"));
+title('PM10')
 legend('internal','filter outlet','external');
+
+% 
+% figure;
+% hold on
+% plot(m1.time,m1.("PN2.5"));
+% plot(m2.time,m2.("PN2.5"));
+% plot(m3.time,m3.("PN2.5"));
+% title('PN1')
+% legend('internal','filter outlet','external');
+
 
 figure;
 hold on
-plot(m1.time,m1.PN10);
-plot(m2.time,m2.PN10);
-plot(m3.time,m3.PN10);
-title('PN10')
+plot(MAm1.time,MAm1.pm25);
+plot(MAm2.time,MAm2.pm25);
+plot(MAm3.time,MAm3.pm25);
+title('PM2.5')
 legend('internal','filter outlet','external');
-
-
-figure;
-hold on
-plot(m1.time,m1.("PN2.5"));
-plot(m2.time,m2.("PN2.5"));
-plot(m3.time,m3.("PN2.5"));
-title('PN1')
-legend('internal','filter outlet','external');
-
